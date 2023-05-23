@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan 1 JSON</title>
+</head>
+<body>
+    
+    Nama: <span id="txNAMA"></span><br>
+    tgl Lahir: <span id="txTALAG"></span><br>
+    Jenis Kelamin: <span id="txJKEL"></span><br>
+    Alamat: <span id="txALAMAT"></span><br>
+    Zodiak: <span id="txZODIAK"></span><br>
+
+
+
+
+
+
+
+    <script>
+        const BacaData = new XMLHttpRequest();
+        BacaData.open("GET", "http://localhost/SESI11/Latihan01.php");
+        BacaData.send();
+
+        BacaData.onload = function(){
+            const dta = JSON.parse(this.responseText);
+
+            console.log(dta);
+            let JKEL = "Laki - Laki";
+            if(dta.JKEL=="P"){
+                JKEL = "Perempuan";
+            }
+            document.getElementById("txNAMA").innerHTML=dta.NAMA
+            document.getElementById("txTALAG").innerHTML=dta.TGL_LAHIR
+            document.getElementById("txJKEL").innerHTML=JKEL;
+            document.getElementById("txALAMAT").innerHTML=dta.ALAMAT
+            document.getElementById("txZODIAK").innerHTML=dta.ZODIAK
+        }
+    </script>
+</body>
+</html>
